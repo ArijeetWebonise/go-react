@@ -12,15 +12,18 @@ class Home extends Component {
   }
 
   handleLogin() {
-    this.props.Login(this.props.login.form.user, this.props.login.form.pass);
+    const { props } = this;
+    props.Login(props.login.form.user, props.login.form.pass);
   }
 
   handleChangeUser(e) {
-    this.props.SetLoginFormUser(e.currentTarget.value);
+    const { props } = this;
+    props.SetLoginFormUser(e.currentTarget.value);
   }
 
   handleChangePass(e) {
-    this.props.SetLoginFormPass(e.currentTarget.value);
+    const { props } = this;
+    props.SetLoginFormPass(e.currentTarget.value);
   }
 
   render() {
@@ -28,24 +31,34 @@ class Home extends Component {
       <div>
         <h1>Home</h1>
         <div>
-          <input type="text" name="username" onChange={this.handleChangeUser} />
+          <input
+            type="text"
+            name="username"
+            onChange={this.handleChangeUser}
+            />
         </div>
         <div>
-          <input type="text" name="password" onChange={this.handleChangePass} />
+          <input
+            type="text"
+            name="password"
+            onChange={this.handleChangePass}
+            />
         </div>
-        <button onClick={this.handleLogin} type="button">Login</button>
+        <button
+          onClick={this.handleLogin}
+          type="button"
+          >
+          <p>Login</p>
+        </button>
       </div>
     );
   }
 }
 
-Home.protoTypes = {
+Home.propTypes = {
   login: PropTypes.shape({
     user: PropTypes.any,
-    form: PropTypes.shape({
-      user: PropTypes.string,
-      pass: PropTypes.string,
-    }),
+    form: PropTypes.shape().isRequired,
   }).isRequired,
 };
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Ping } from '../action/ping';
 
@@ -9,12 +10,20 @@ class Login extends Component {
   }
 
   render() {
-    const ping = this.props.ping.pong ? "ping" : "pong";
+    const { ping } = this.props;
+    const pingResponse = ping.pong ? 'ping' : 'pong';
     return (
-      <div>{ping}</div>
+      <div>{pingResponse}</div>
     );
   }
 }
+
+Login.propTypes = {
+  ping: PropTypes.shape({
+    pong: PropTypes.bool.isRequired,
+  }).isRequired,
+  Ping: PropTypes.func.isRequired,
+};
 
 const mapStateToProp = state => ({
   ping: state.ping,
