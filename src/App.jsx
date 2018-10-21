@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Home from './container/Home';
 import Ping from './container/Ping';
 import store from './store';
 
-class App extends Component{
-    render () {
-        return (
-            <Provider store={store}>
-                <Router>
-                    <Switch>
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/ping" component={Ping} />
-                    </Switch>
-                </Router>
-            </Provider>
-        );
-    }
-}
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={Home}
+          />
+        <Route
+          path="/ping"
+          component={Ping}
+          />
+      </Switch>
+    </Router>
+  </Provider>
+);
 
 export default App;
- 

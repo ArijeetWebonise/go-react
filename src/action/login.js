@@ -28,7 +28,7 @@ export function SetLoginFormPass(data) {
   };
 }
 
-export function Login(dispatch, form = { user: '', pass: ''}) {
+export function Login(dispatch, form = { user: '', pass: '' }) {
   const csrfElement = document.getElementById('crsf');
   const ajaxRequest = axios.create({
     headers: { 'X-CSRF-Token': csrfElement.children[0].value },
