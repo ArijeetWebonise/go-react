@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const PUBLIC_PATH = 'http://localhost:3000/';
 
@@ -21,6 +23,12 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      test: /\.(js|jsx)$/,
+      exclude: /(node_modules|bower_components)/,
+    })],
+  },
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -38,6 +46,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
     new SWPrecacheWebpackPlugin({
       cacheId: 'local-cache',
       dontCacheBustUrlsMatching: /\.\w{8}\./,
