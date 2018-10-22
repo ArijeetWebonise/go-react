@@ -31,6 +31,7 @@ module.exports = {
         'afterEach': true,
         'document': true,
         'window': true,
+        'navigator': true,
         'beforeAll': true,
         'jest': true,
         'mCustomScrollbar': true,
