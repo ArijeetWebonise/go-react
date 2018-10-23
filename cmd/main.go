@@ -5,6 +5,7 @@ import (
 
 	"github.com/Arijeet-webonise/go-react/app"
 	"github.com/Arijeet-webonise/go-react/app/config"
+	"github.com/Arijeet-webonise/go-react/pkg/database"
 	"github.com/Arijeet-webonise/go-react/pkg/logger"
 	"github.com/Arijeet-webonise/go-react/pkg/session"
 	"github.com/Arijeet-webonise/go-react/pkg/templates"
@@ -22,18 +23,26 @@ func main() {
 	}
 	cfg = cfg.ConstructAppConfig()
 
+	db := &database.DatabaseWrapper{}
+	dbConn, dbErr := db.Initialise(&cfg.DB)
+	if dbErr != nil {
+		logger.Panic(dbErr)
+		return
+	}
+
 	CSRF := csrf.Protect([]byte(cfg.CSRFAuthkey))
 
 	a := app.App{
-		Router:       bone.New(),
-		Config:       cfg,
-		Logger:       logger,
-		TplParser:    &templates.TemplateParser{},
+		Router:    bone.New(),
+		Config:    cfg,
+		Logger:    logger,
+		DB:        dbConn,
+		TplParser: &templates.TemplateParser{},
 		FlashService: &session.CookieStoreServiceImpl{
-			Store:  sessions.NewCookieStore([]byte(cfg.SessionAuthkey)), 
+			Store:  sessions.NewCookieStore([]byte(cfg.SessionAuthkey)),
 			Secure: false,
 		},
-		CSRF:         CSRF,
+		CSRF: CSRF,
 	}
 
 	a.InitRoute()
