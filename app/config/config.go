@@ -37,6 +37,13 @@ func (appConfig *AppConfig) ConstructAppConfig() *AppConfig {
 	appConfig.Port = appConfig.validateEnvVar("PORT")
 	appConfig.CSRFAuthkey = appConfig.validateEnvVar("CSRF_AUTH_KEY")
 	appConfig.SessionAuthkey = appConfig.validateEnvVar("SESSION_AUTH_KEY")
+
+	appConfig.DB.DbUserName = appConfig.validateEnvVar("DB_USERNAME")
+	appConfig.DB.DbPassword = appConfig.validateEnvVar("DB_PASSWORD")
+	appConfig.DB.DbHost = appConfig.validateEnvVar("DB_HOST")
+	appConfig.DB.DbName = appConfig.validateEnvVar("DB_NAME")
+	appConfig.DB.DbDriverName = appConfig.validateEnvVar("DB_DRIVER_NAME")
+	appConfig.DB.DbDataSource = appConfig.validateEnvVar("DB_DATA_SOURCE")
 	return appConfig
 }
 

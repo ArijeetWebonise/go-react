@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --progress -p",
     "start": "webpack-dev-server --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ext=jsx .",
+    "test": "npm run lint"
   },
   "keywords": [],
   "author": "",
@@ -44,5 +45,8 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
-  }
+  },
+  "pre-commit": [
+    "test"
+  ]
 }

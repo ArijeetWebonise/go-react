@@ -1,6 +1,7 @@
 package app
 
 import (
+	"database/sql"
 	"net/http"
 
 	"github.com/Arijeet-webonise/go-react/app/config"
@@ -16,6 +17,7 @@ type App struct {
 	Config       config.Config
 	Logger       logger.ILogger
 	TplParser    templates.ITemplateParser
+	DB           *sql.DB
 	CSRF         func(http.Handler) http.Handler
 	FlashService session.ISessionService
 }
