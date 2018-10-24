@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/Arijeet-webonise/go-react/app/config"
+	_ "github.com/lib/pq"
 )
 
 // DatabaseConnectionInitialiser encapsulates DB object

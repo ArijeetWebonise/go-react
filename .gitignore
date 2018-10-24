@@ -1,6 +1,8 @@
 /node_modules
 /dist
 package-lock.json
-yarn.lock
 setenv.sh
+*.lock
 *.log
+dbconfig.yml
+docker-data/*

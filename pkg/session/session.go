@@ -54,7 +54,7 @@ func (fl *CookieStoreServiceImpl) SetFlash(r *http.Request, w http.ResponseWrite
 	//register the structure encoding/gob knows about it
 	gob.Register(&Flash{})
 
-	session, err := fl.Store.Get(r, `daswasser_session_flash`)
+	session, err := fl.Store.Get(r, `goreact_session_flash`)
 	if err != nil {
 		return err
 	}
@@ -80,7 +80,7 @@ func (fl *CookieStoreServiceImpl) GetFlash(r *http.Request, w http.ResponseWrite
 	//register the structure encoding/gob knows about it
 	gob.Register(&Flash{})
 
-	session, err := fl.Store.Get(r, `daswasser_session_flash`)
+	session, err := fl.Store.Get(r, `goreact_session_flash`)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (fl *CookieStoreServiceImpl) GetFlash(r *http.Request, w http.ResponseWrite
 //Creates random uuid for a user, prepares a user session structure and save it to a session
 //User will be authenticated based by user session
 func (fl *CookieStoreServiceImpl) CreateSession(r *http.Request, w http.ResponseWriter, userID int) (string, error) {
-	session, _ := fl.Store.Get(r, `daswasser_session_user`)
+	session, _ := fl.Store.Get(r, `goreact_session_user`)
 
 	//register the structure encoding/gob knows about it
 	gob.Register(&UserSession{})
@@ -132,7 +132,7 @@ func (fl *CookieStoreServiceImpl) CreateSession(r *http.Request, w http.Response
 //GetSession get session for a user
 //Returns user session structure with user id and session id if session is found
 func (fl *CookieStoreServiceImpl) GetSession(r *http.Request) (*UserSession, error) {
-	session, err := fl.Store.Get(r, `daswasser_session_user`)
+	session, err := fl.Store.Get(r, `goreact_session_user`)
 	if err != nil {
 		return nil, errors.New(`Session Not Available`)
 	}
@@ -144,7 +144,7 @@ func (fl *CookieStoreServiceImpl) GetSession(r *http.Request) (*UserSession, err
 
 //DeleteSession deletes the user's session by setting max age value to -1
 func (fl *CookieStoreServiceImpl) DeleteSession(r *http.Request, w http.ResponseWriter) error {
-	session, _ := fl.Store.Get(r, `daswasser_session_user`)
+	session, _ := fl.Store.Get(r, `goreact_session_user`)
 	session.Options.MaxAge = -1
 	err := session.Save(r, w)
 	if err != nil {
@@ -155,7 +155,7 @@ func (fl *CookieStoreServiceImpl) DeleteSession(r *http.Request, w http.Response
 
 //UpdateSession updates session by adding more 30 minutes to session
 func (fl *CookieStoreServiceImpl) UpdateSession(r *http.Request, w http.ResponseWriter) error {
-	session, err := fl.Store.Get(r, `daswasser_session_user`)
+	session, err := fl.Store.Get(r, `goreact_session_user`)
 	if err != nil {
 		return err
 	}
@@ -171,7 +171,7 @@ func (fl *CookieStoreServiceImpl) UpdateSession(r *http.Request, w http.Response
 
 //CreateSessionValue creates session for a storing any data
 func (fl *CookieStoreServiceImpl) CreateSessionValue(r *http.Request, w http.ResponseWriter, key string, value interface{}) error {
-	session, _ := fl.Store.Get(r, fmt.Sprintf(`daswasser_session_%s`, key))
+	session, _ := fl.Store.Get(r, fmt.Sprintf(`goreact_session_%s`, key))
 
 	//register the structure encoding/gob knows about it
 	gob.Register(value)
@@ -192,7 +192,7 @@ func (fl *CookieStoreServiceImpl) CreateSessionValue(r *http.Request, w http.Res
 //GetSessionValue get session for a user
 //Returns user session structure with user id and session id if session is found
 func (fl *CookieStoreServiceImpl) GetSessionValue(r *http.Request, key string) (interface{}, error) {
-	session, err := fl.Store.Get(r, fmt.Sprintf(`daswasser_session_%s`, key))
+	session, err := fl.Store.Get(r, fmt.Sprintf(`goreact_session_%s`, key))
 	if err != nil {
 		return nil, errors.New(`Session Not Available`)
 	}
@@ -204,7 +204,7 @@ func (fl *CookieStoreServiceImpl) GetSessionValue(r *http.Request, key string) (
 
 //DeleteSessionValue deletes the user's session by setting max age value to -1
 func (fl *CookieStoreServiceImpl) DeleteSessionValue(r *http.Request, w http.ResponseWriter, key string) error {
-	session, _ := fl.Store.Get(r, fmt.Sprintf(`daswasser_session_%s`, key))
+	session, _ := fl.Store.Get(r, fmt.Sprintf(`goreact_session_%s`, key))
 	session.Options.MaxAge = -1
 	err := session.Save(r, w)
 	if err != nil {
@@ -215,7 +215,7 @@ func (fl *CookieStoreServiceImpl) DeleteSessionValue(r *http.Request, w http.Res
 
 //UpdateSessionValue updates session by adding more 30 minutes to session
 func (fl *CookieStoreServiceImpl) UpdateSessionValue(r *http.Request, w http.ResponseWriter, key string) error {
-	session, err := fl.Store.Get(r, fmt.Sprintf(`daswasser_session_%s`, key))
+	session, err := fl.Store.Get(r, fmt.Sprintf(`goreact_session_%s`, key))
 	if err != nil {
 		return err
 	}
