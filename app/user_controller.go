@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/Arijeet-webonise/go-react/pkg/framework"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // Login api for login
@@ -16,12 +17,20 @@ func (app *App) Login(w *framework.Response, r *framework.Request) {
 		return
 	}
 
-	user := body["user"]
+	email := body["user"]
 	pass := body["pass"]
 
-	if user != "admin@admin" && pass != "admin" {
-		err := errors.New("username or password are incorrect")
+	user, err := app.CustomUserService.GetUser(email)
+	if err != nil {
 		app.Logger.Error(err)
+		err := errors.New("username or password are incorrect")
+		w.InternalError(err)
+		return
+	}
+
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(pass)); err != nil {
+		app.Logger.Error(err)
+		err = errors.New("username or password are incorrect")
 		w.BadRequest(err)
 		return
 	}

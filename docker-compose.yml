@@ -1,0 +1,27 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: toor
+      POSTGRES_USER: local
+      POSTGRES_DB: go-react
+    volumes:
+      - .:/code
+      - ./docker-data/db/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - go-react
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 9998:8080
+    networks:
+      - go-react
+
+networks:
+  go-react:
+    driver: bridge

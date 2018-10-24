@@ -1,0 +1,4 @@
+development:
+    dialect: postgres
+    datasource: host=localhost user=local password=toor dbname=go-react sslmode=disable
+    dir: migrations/
