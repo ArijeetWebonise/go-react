@@ -9,6 +9,7 @@ package pipeline
 //go:generate go get "github.com/go-zoo/bone"
 //go:generate go get github.com/gorilla/csrf
 //go:generate go get -u golang.org/x/tools/cmd/goimports
+//go:generate go get golang.org/x/crypto/bcrypt
 //go:generate go get -u  github.com/mitchellh/gox
 //go:generate go get -u github.com/mitchellh/mapstructure
 //go:generate go get -u github.com/xo/xo

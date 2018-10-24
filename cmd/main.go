@@ -5,6 +5,7 @@ import (
 
 	"github.com/Arijeet-webonise/go-react/app"
 	"github.com/Arijeet-webonise/go-react/app/config"
+	"github.com/Arijeet-webonise/go-react/app/models"
 	"github.com/Arijeet-webonise/go-react/pkg/database"
 	"github.com/Arijeet-webonise/go-react/pkg/logger"
 	"github.com/Arijeet-webonise/go-react/pkg/session"
@@ -42,7 +43,9 @@ func main() {
 			Store:  sessions.NewCookieStore([]byte(cfg.SessionAuthkey)),
 			Secure: false,
 		},
-		CSRF: CSRF,
+		CSRF:              CSRF,
+		UserService:       &models.UserServiceImpl{DB: dbConn},
+		CustomUserService: &models.CustomUserServiceImpl{DB: dbConn},
 	}
 
 	a.InitRoute()
