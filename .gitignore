@@ -5,4 +5,4 @@ setenv.sh
 *.lock
 *.log
 dbconfig.yml
-docker-data/*
+/docker-data/*
