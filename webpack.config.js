@@ -42,7 +42,8 @@ module.exports = {
       '/': 'http://localhost:9999',
       '/api/v1': 'http://localhost:9999/api/v1',
     },
-    hotOnly: true,
+    hot: true,
+    open: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

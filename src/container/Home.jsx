@@ -1,35 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Login, SetLoginFormUser, SetLoginFormPass } from '../action/login';
+import { Login } from '../action/login';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: '',
+      pass: '',
+    };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
+    this.getMsg = this.getMsg.bind(this);
+  }
+
+  getMsg() {
+    const { props } = this;
+    if (props.login.error !== null) {
+      return (<div>Email or Password Failed</div>);
+    }
+    return null;
   }
 
   handleLogin() {
-    const { props } = this;
-    props.Login(props.login.form.user, props.login.form.pass);
+    const { props, state } = this;
+    props.Login(state.user, state.pass);
   }
 
   handleChangeUser(e) {
-    const { props } = this;
-    props.SetLoginFormUser(e.currentTarget.value);
+    this.setState({
+      user: e.currentTarget.value,
+    });
   }
 
   handleChangePass(e) {
-    const { props } = this;
-    props.SetLoginFormPass(e.currentTarget.value);
+    this.setState({
+      pass: e.currentTarget.value,
+    });
   }
 
   render() {
     return (
       <div>
         <h1>Home</h1>
+        {this.getMsg()}
         <div>
           <input
             type="text"
@@ -69,12 +85,6 @@ const mapStateToProp = state => ({
 const mapDispatchToProp = dispatch => ({
   Login: (username, password) => {
     dispatch(Login(dispatch, { user: username, pass: password }));
-  },
-  SetLoginFormUser: (data) => {
-    dispatch(SetLoginFormUser(data));
-  },
-  SetLoginFormPass: (data) => {
-    dispatch(SetLoginFormPass(data));
   },
 });
 
