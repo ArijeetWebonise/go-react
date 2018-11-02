@@ -9,3 +9,6 @@ export GR_DB_HOST="localhost"
 export GR_DB_NAME="go-react"
 export GR_DB_DRIVER_NAME="postgres"
 export GR_DB_DATA_SOURCE="host=localhost user=local password=toor dbname=go-react sslmode=disable"
+export GR_GRAPHIQL=false
+export GR_GRAPHQL_PLAYGROUND=true
+export GR_GRAPHQL_PRETTY=true
