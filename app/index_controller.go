@@ -3,7 +3,7 @@ package app
 import (
 	"net/http"
 
-	"github.com/Arijeet-webonise/go-react/pkg/framework"
+	"github.com/ArijeetBaruah/go-react/pkg/framework"
 )
 
 // RenderIndex renders all HTML pages

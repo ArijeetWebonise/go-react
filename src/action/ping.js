@@ -20,7 +20,11 @@ export function Ping(dispatch) {
     headers: { 'X-CSRF-Token': csrfElement.children[0].value },
   });
 
-  ajaxRequest.get('/api/v1/ping')
+  const data = `{
+    ping
+  }`;
+
+  ajaxRequest.get(`/graphql?query=${encodeURI(data)}`)
     .then((res) => {
       dispatch(Pong(res.data));
     })

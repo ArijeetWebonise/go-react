@@ -4,11 +4,11 @@ import (
 	"database/sql"
 	"net/http"
 
-	"github.com/Arijeet-webonise/go-react/app/config"
-	"github.com/Arijeet-webonise/go-react/app/models"
-	"github.com/Arijeet-webonise/go-react/pkg/logger"
-	"github.com/Arijeet-webonise/go-react/pkg/session"
-	"github.com/Arijeet-webonise/go-react/pkg/templates"
+	"github.com/ArijeetBaruah/go-react/app/config"
+	"github.com/ArijeetBaruah/go-react/app/models"
+	"github.com/ArijeetBaruah/go-react/pkg/logger"
+	"github.com/ArijeetBaruah/go-react/pkg/session"
+	"github.com/ArijeetBaruah/go-react/pkg/templates"
 	"github.com/go-zoo/bone"
 	"github.com/graphql-go/handler"
 )

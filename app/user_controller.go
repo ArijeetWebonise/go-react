@@ -3,7 +3,7 @@ package app
 import (
 	"errors"
 
-	"github.com/Arijeet-webonise/go-react/pkg/framework"
+	"github.com/ArijeetBaruah/go-react/pkg/framework"
 	"golang.org/x/crypto/bcrypt"
 )
 
