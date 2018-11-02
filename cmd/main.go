@@ -57,9 +57,9 @@ func main() {
 
 	a.APIHandler = handler.New(&handler.Config{
 		Schema:     &schema,
-		Pretty:     true,
-		GraphiQL:   false,
-		Playground: true,
+		Pretty:     cfg.GraphQL.Pretty,
+		GraphiQL:   cfg.GraphQL.GraphiQL,
+		Playground: cfg.GraphQL.Playground,
 	})
 
 	a.InitRoute()

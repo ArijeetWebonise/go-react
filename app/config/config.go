@@ -17,6 +17,14 @@ type AppConfig struct {
 	Port           string
 	CSRFAuthkey    string
 	SessionAuthkey string
+	GraphQL        GraphQLConfig
+}
+
+//GraphQLConfig config properties for GraphQl
+type GraphQLConfig struct {
+	Pretty     bool
+	GraphiQL   bool
+	Playground bool
 }
 
 // DbConfig wrapper for DB config
@@ -44,6 +52,9 @@ func (appConfig *AppConfig) ConstructAppConfig() *AppConfig {
 	appConfig.DB.DbName = appConfig.validateEnvVar("DB_NAME")
 	appConfig.DB.DbDriverName = appConfig.validateEnvVar("DB_DRIVER_NAME")
 	appConfig.DB.DbDataSource = appConfig.validateEnvVar("DB_DATA_SOURCE")
+	appConfig.GraphQL.GraphiQL = viper.GetBool("GRAPHIQL")
+	appConfig.GraphQL.Playground = viper.GetBool("GRAPHQL_PLAYGROUND")
+	appConfig.GraphQL.Pretty = viper.GetBool("GRAPHQL_PRETTY")
 	return appConfig
 }
 
