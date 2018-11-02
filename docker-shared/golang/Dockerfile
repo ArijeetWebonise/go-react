@@ -1,6 +1,6 @@
 FROM golang
 
-WORKDIR $GOPATH/src/github.com/Arijeet-webonise/go-react
+WORKDIR $GOPATH/src/github.com/ArijeetBaruah/go-react
 
 RUN go get -v -u github.com/oxequa/realize
 RUN go get github.com/lib/pq

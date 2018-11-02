@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Arijeet-webonise/go-react/app/models"
+	"github.com/ArijeetBaruah/go-react/app/models"
 	"github.com/graphql-go/graphql"
 	"golang.org/x/crypto/bcrypt"
 )
