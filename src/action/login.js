@@ -34,14 +34,19 @@ export function Login(dispatch, form = { user: '', pass: '' }) {
     headers: { 'X-CSRF-Token': csrfElement.children[0].value },
   });
 
-  const data = {
-    user: form.user,
-    pass: form.pass,
-  };
+  const data = `{
+    login(email: "${form.user}", password: "${form.pass}"){
+      id
+    }
+  }`;
 
-  ajaxRequest.post('/api/v1/login', data)
+  ajaxRequest.get(`/graphql?query=${encodeURI(data)}`)
     .then((res) => {
-      dispatch(LoginResponse(res.data));
+      if (res.data.errors !== undefined) {
+        dispatch(LoginFailed(res.data.errors));
+        return;
+      }
+      dispatch(LoginResponse(res.data.data));
     })
     .catch((e) => {
       dispatch(LoginFailed(e));

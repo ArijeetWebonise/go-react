@@ -13,6 +13,7 @@ import (
 	"github.com/go-zoo/bone"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/sessions"
+	"github.com/graphql-go/handler"
 )
 
 func main() {
@@ -46,7 +47,20 @@ func main() {
 		CSRF:              CSRF,
 		UserService:       &models.UserServiceImpl{DB: dbConn},
 		CustomUserService: &models.CustomUserServiceImpl{DB: dbConn},
+		GraphQlService:    &app.GraphQlServiceImpl{DB: dbConn},
 	}
+
+	schema, err := a.GraphQlService.GetSchema()
+	if err != nil {
+		panic(err)
+	}
+
+	a.APIHandler = handler.New(&handler.Config{
+		Schema:     &schema,
+		Pretty:     true,
+		GraphiQL:   false,
+		Playground: true,
+	})
 
 	a.InitRoute()
 

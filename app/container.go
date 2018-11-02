@@ -10,6 +10,7 @@ import (
 	"github.com/Arijeet-webonise/go-react/pkg/session"
 	"github.com/Arijeet-webonise/go-react/pkg/templates"
 	"github.com/go-zoo/bone"
+	"github.com/graphql-go/handler"
 )
 
 // App wrapper for go application
@@ -19,8 +20,10 @@ type App struct {
 	Logger            logger.ILogger
 	TplParser         templates.ITemplateParser
 	DB                *sql.DB
+	APIHandler        *handler.Handler
 	CSRF              func(http.Handler) http.Handler
 	FlashService      session.ISessionService
 	UserService       models.UserService
 	CustomUserService models.CustomUserService
+	GraphQlService    GraphQlService
 }
