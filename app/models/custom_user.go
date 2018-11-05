@@ -28,16 +28,16 @@ var UserSchema = graphql.NewObject(graphql.ObjectConfig{
 		"email": &graphql.Field{
 			Type: graphql.String,
 		},
-		"firstName": &graphql.Field{
-			Type: graphql.String,
+		"first_name": &graphql.Field{
+			Type: NullString,
 		},
-		"lastName": &graphql.Field{
-			Type: graphql.String,
+		"last_name": &graphql.Field{
+			Type: NullString,
 		},
-		"modifiedAt": &graphql.Field{
+		"modified_at": &graphql.Field{
 			Type: graphql.DateTime,
 		},
-		"createdAt": &graphql.Field{
+		"created_at": &graphql.Field{
 			Type: graphql.DateTime,
 		},
 	},

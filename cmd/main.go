@@ -62,6 +62,8 @@ func main() {
 		Playground: cfg.GraphQL.Playground,
 	})
 
+	a.GraphQlService.GetApp(&a)
+
 	a.InitRoute()
 
 	if err := http.ListenAndServe(cfg.Port, a.Router); err != nil {
