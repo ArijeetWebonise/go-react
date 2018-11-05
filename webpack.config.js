@@ -4,7 +4,7 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const PUBLIC_PATH = 'http://localhost:3000/';
+const PUBLIC_PATH = 'http://localhost';
 
 module.exports = {
   entry: './src/index.jsx',
@@ -37,7 +37,6 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
-    port: 3000,
     proxy: {
       '/': 'http://localhost:9999',
       '/api/v1': 'http://localhost:9999/api/v1',
