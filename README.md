@@ -1,4 +1,4 @@
-# go-react
+# MyBlog
 
 > Golang Framework with react view
 
