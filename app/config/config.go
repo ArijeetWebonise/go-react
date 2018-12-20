@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/ArijeetBaruah/go-react/pkg/logger"
+	"github.com/ArijeetBaruah/MyBlog/pkg/logger"
 	"github.com/spf13/viper"
 )
 

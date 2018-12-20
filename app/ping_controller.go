@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/ArijeetBaruah/go-react/pkg/framework"
+	"github.com/ArijeetBaruah/MyBlog/pkg/framework"
 )
 
 //Ping will indicate the health

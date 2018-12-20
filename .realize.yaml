@@ -3,7 +3,7 @@ settings:
     force: false
     interval: 0s
 schema:
-- name: go-react
+- name: MyBlog
   path: ./cmd
   commands:
     run:

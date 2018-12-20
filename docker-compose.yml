@@ -1,27 +1,35 @@
-version: '2'
+version: '3'
 services:
   db:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: toor
+      POSTGRES_PASSWORD: local
       POSTGRES_USER: local
-      POSTGRES_DB: go-react
+      POSTGRES_DB: MyBlog
     volumes:
       - .:/code
       - ./docker-data/db/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:
-      - go-react
+      - MyBlog
   adminer:
     image: adminer:latest
     restart: always
     ports:
-      - 9998:8080
+      - 8080:8080
     networks:
-      - go-react
+      - MyBlog
+  golang:
+    build: ./docker-shared/golang
+    volumes:
+      - .:/go/src/github.com/ArijeetBaruah/MyBlog
+    ports:
+      - 9999:9999
+    networks:
+      - MyBlog
 
 networks:
-  go-react:
+  MyBlog:
     driver: bridge
